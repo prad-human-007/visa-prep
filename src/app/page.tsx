@@ -1,9 +1,13 @@
 'use client'
 
+import { useRouter } from "next/navigation";
+
 export default function Home() {
 
+  const router = useRouter()
+
   const handleClick = () => {
-    alert("Click Handled");
+    router.push('api/auth/signin');
   };
 
   return (
