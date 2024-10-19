@@ -1,7 +1,11 @@
-export default function lay({children} : { children: React.ReactNode }){
+import { loginIsRequiredServer } from "@/lib/protectedRoute"
+
+export default async function lay({children} : { children: React.ReactNode }){
+    
+    await loginIsRequiredServer()
+
     return(
         <div>
-            <h1> This is Post Layout </h1>
             {children}
         </div>
     )
