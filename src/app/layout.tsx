@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import React, {useState} from "react";
+import { logout } from "@/lib/protectedRoute";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,6 +50,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return null; // You could also return a loading spinner if needed
   }
 
+  const handleLogout = async () => {
+    if(confirm("Are you sure you want to logout?")) {
+      await logout();
+    }
+  }
+
   return (
     <html lang="en">
       <body>
@@ -73,6 +80,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <li><a href="/posts" className="block py-2">Post</a></li>
               <li><a href="/posts/68" className="block py-2">Post/68</a></li>
               <li><a href="/doesNotExtst" className="block py-2"> Does not exist </a></li>
+              <li>
+                <button onClick={handleLogout}> Logout </button>
+              </li>
             </ul>
           </div>
 
